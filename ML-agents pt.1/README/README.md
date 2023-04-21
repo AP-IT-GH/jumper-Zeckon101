@@ -1,6 +1,20 @@
 Beste lezer,
 
-Wat je nu gaat lezen is een leuke jumper game die gemaakt is in Unity. Tijdens deze opdracht zijn mijn labopartner en ik op problemen gestuit, het grootste probleem was om de agent te laten springen. Dit heeft ons soms veel moeite gekost. Ik was al aan het nadenken over complexe zaken, terwijl mijn partner beter nadacht over de basis. We zijn begonnen met kleine stappen om te zien hoe alles afzonderlijk werkt en hoe het er visueel uitziet. Het moeilijkste was het schrijven van een script, wat niet mijn persoonlijke sterkste kant is. Maar ik kon rekenen op mijn goede labopartner die er sterker in is. We hebben scripts geschreven voor zowel de agent als de objecten. Het grootste probleem dat we tegenkwamen was dat de agent ons jumper game te makkelijk vond. Waarom te makkelijk? We zagen onze rewards ineens dalen en sindsdien kregen we alleen nog maar 0 waardes. Eerst heb ik geprobeerd om de hyperparameters aan te passen, maar dit had weinig effect. Uiteindelijk hebben we het probleem kunnen oplossen door de code aan te passen en de rewards te veranderen.
+Wat je nu gaat lezen is een leuke jumper game die gemaakt is in Unity. Tijdens deze opdracht zijn mijn labopartner en ik op problemen gestuit, het grootste probleem was om de agent te laten springen. Dit heeft ons soms veel moeite gekost. Chadley was al aan het nadenken over complexe zaken, terwijl Jordy eerder nadacht over de basis.
+
+We zijn begonnen met kleine stappen om te zien hoe alles afzonderlijk werkt en hoe het er visueel uitziet. Het moeilijkste was het schrijven van een script. We hebben scripts geschreven voor zowel de agent als de objecten. 
+
+Het grootste probleem dat we tegenkwamen was dat de agent ons jumper game te makkelijk vond. Waarom te makkelijk? We zagen onze rewards ineens dalen en sindsdien kregen we alleen nog maar 0 waardes. Eerst heb ik geprobeerd om de hyperparameters aan te passen, maar dit had weinig effect. Uiteindelijk hebben we het probleem kunnen oplossen door de code aan te passen en de rewards te veranderen.
+
+We hadden ook heel veel kleine problemen waar we niet al te diep op ingaan maar deze problemen waren o.a: 
+- Geen apart swpaner script maken oor de objecten aangezien we met epsiodes werken.
+- Objecten die van het platform vallen worden niet "gedestroyed".
+- Objecten gaan de verkeerde richting uit als ze "gespawned" worden.
+- Extra bewegings mogelijkheden zoals rond de eigen as draaien mogen niet samen in het bewegingsscript komen maar moeten apart in een empy game object komen, anders krijgen we rare bewegingen.
+- Jumper die niet wou stoppen met te jumpen ook al drukten we niet op de spatie balk in de heuristic mode.
+- Heel raar gedrag van de bewegnde objecten.
+- Objecten die niet willen spawnen of maar 1 keer spawnen.
+- ...
 
 Inleiding
 
@@ -28,15 +42,24 @@ a.	Rigidbody-component: Voeg een Rigidbody-component toe aan het CubeAgentJump-g
 b.	Collider-component: Voeg een Collider-component toe aan het CubeAgentJump-game object om te controleren of de agent op de grond staat.
 c.	Ground Check-game object: Voeg een nieuw game object toe aan het CubeAgentJump-game object om te controleren of de agent op de grond staat.
 3.	Uitleg  volgende parameters toe aan het CubeAgentJump-script:
-a.	public float jumpForce = 10f; jumpForce: De kracht die de agent nodig heeft om te springen.
-i.	
-b.	public Transform groundCheck;
-c.	public LayerMask groundMask;
+a.	JumpForce: De kracht die de agent nodig heeft om te springen.
+b.	GroundCheck: Een Transform die het CubeAgentJump-game object boven de grond plaatst om te controleren of de agent op de grond staat.
+c.	GroundMask: De laag van de grond waar de agent op kan staan.
+d.  GroundMask: de laag die de grond aangeeft. Alleen objecten met deze laag worden gezien als grond.
+e.  ObstaclePrefabs: een array van obstacle prefabs die worden gebruikt om willekeurig objecten te spawnen die de agent moet vermijden.
+f.  obstacleSpawnDistance: de afstand vanaf de agent waarop obstakels worden gespawnd.
+g.  MinObstacleSpawnTime: de minimale tijd tussen het spawnen van obstakels.
+h.  MaxObstacleSpawnTime: de maximale tijd tussen het spawnen van obstakels.
+I.  Obstacles: een lijst met alle obstakels die momenteel in de scène aanwezig zijn.
+J.  Rb: de Rigidbody component van de agent.
+K.  IsGrounded: een boolean die aangeeft of de agent op de grond staat.
+L.  ObstacleSpawnTimer: een timer die bijhoudt hoe lang het geleden is dat er een obstakel gespawned is.
+4.  Voeg of maak de prefabs naar keuze en sleep deze in de ObstaclePrefabs.
+5.  Ook mag je niet vergeten om de Agent ogen te geven door een Ray Perception Sensor 3D mee te geven
+6. Zet ook de branch 0 size op 2 om er voor te zorgen dat de jumper weldegelijk kan jumpen ;)
 
-jumpForce: De kracht die de agent nodig heeft om te springen.
-groundCheck: Een Transform die het CubeAgentJump-game object boven de grond plaatst om te controleren of de agent op de grond staat.
-groundMask: De laag van de grond waar de agent op kan staan.
-Script:
+CubeAgentJump script:
+
 using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
@@ -212,16 +235,61 @@ public class CubeAgentJump : Agent
     }
 }
 
-Voeg de volgende parameters toe aan het CubeAgentJump-script:
+MovingObject script:
 
-chart 1
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class MovingObject : MonoBehaviour
+{
+    public float speedMin = 5f;
+    public float speedMax = 10f;
+
+    private float speed;
+
+    private void Start()
+    {
+        // Get a random speed between speedMin and speedMax for each episode
+        speed = Random.Range(speedMin, speedMax);
+    }
+
+    private void Update()
+    {
+        transform.Translate(Vector3.back * speed * Time.deltaTime);
+
+    }
+
+}
+
+
+RotatingObject script: 
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class RotatingObject : MonoBehaviour
+{
+    private void Update()
+    {
+        //transform.Translate(Vector3.back * speed * Time.deltaTime);
+        transform.Rotate(new Vector3(0.5f, 0, 0));
+    }
+}
+
+
+
+
+
+Rewards:
 
 ![](Aspose.Words.c70436d2-24e3-4e90-ae1b-18f13a8637d3.004.png)
 
-chart 2
+Uiteindelijke jumper chart:
 
 ![](Aspose.Words.c70436d2-24e3-4e90-ae1b-18f13a8637d3.005.png)
 
-chart 3
+Jumper chart waarbij de jumping na bepaalde tijd in staking ging:
 
 ![](Aspose.Words.c70436d2-24e3-4e90-ae1b-18f13a8637d3.006.png)
