@@ -4,7 +4,7 @@ Wat je nu gaat lezen is een leuke jumper game die gemaakt is in Unity. Tijdens d
 
 We zijn begonnen met kleine stappen om te zien hoe alles afzonderlijk werkt en hoe het er visueel uitziet. Het moeilijkste was het schrijven van een script. We hebben scripts geschreven voor zowel de agent als de objecten. 
 
-Het grootste probleem dat we tegenkwamen was dat de agent ons jumper game te makkelijk vond. Waarom te makkelijk? We zagen onze rewards ineens dalen en sindsdien kregen we alleen nog maar 0 waardes. Eerst heb ik geprobeerd om de hyperparameters aan te passen, maar dit had weinig effect. Uiteindelijk hebben we het probleem kunnen oplossen door de code aan te passen en de rewards te veranderen.
+Het grootste probleem dat we tegenkwamen was dat de agent ons jumper game te makkelijk vond. Waarom te makkelijk? We zagen onze rewards ineens dalen en sindsdien kregen we alleen nog maar 0 waardes. Eerst hebben we geprobeerd om de hyperparameters aan te passen, maar dit had weinig effect. Uiteindelijk hebben we het probleem kunnen oplossen door de code aan te passen en de rewards te veranderen.
 
 We hadden ook heel veel kleine problemen waar we niet al te diep op ingaan maar deze problemen waren o.a: 
 - Geen apart swpaner script maken oor de objecten aangezien we met epsiodes werken.
