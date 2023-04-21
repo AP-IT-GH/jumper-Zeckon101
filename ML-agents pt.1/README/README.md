@@ -1,19 +1,22 @@
+Voorwoord
+
 Beste lezer,
 
-Wat je nu gaat lezen is een leuke jumper game die gemaakt is in Unity. Tijdens deze opdracht zijn mijn labopartner en ik op problemen gestuit, het grootste probleem was om de agent te laten springen. Dit heeft ons soms veel moeite gekost. Chadley was al aan het nadenken over complexe zaken, terwijl Jordy eerder nadacht over de basis.
+Wat je nu gaat lezen is een leuke jumper game die gemaakt is in Unity. Tijdens deze opdracht zijn mijn labopartner en ik op problemen gestuit. Het grootste probleem was om de agent te laten springen. Dit heeft ons soms veel moeite gekost. Chadley was al aan het nadenken over complexe zaken, terwijl Jordy eerder nadacht over de basis.
 
-We zijn begonnen met kleine stappen om te zien hoe alles afzonderlijk werkt en hoe het er visueel uitziet. Het moeilijkste was het schrijven van een script. We hebben scripts geschreven voor zowel de agent als de objecten. 
+We zijn begonnen met kleine stappen om te zien hoe alles afzonderlijk werkt en hoe het er visueel uitziet. Het moeilijkste was het schrijven van een script. We hebben scripts geschreven voor zowel de agent als de objecten.
 
 Het grootste probleem dat we tegenkwamen was dat de agent ons jumper game te makkelijk vond. Waarom te makkelijk? We zagen onze rewards ineens dalen en sindsdien kregen we alleen nog maar 0 waardes. Eerst hebben we geprobeerd om de hyperparameters aan te passen, maar dit had weinig effect. Uiteindelijk hebben we het probleem kunnen oplossen door de code aan te passen en de rewards te veranderen.
 
-We hadden ook heel veel kleine problemen waar we niet al te diep op ingaan maar deze problemen waren o.a: 
-- Geen apart swpaner script maken oor de objecten aangezien we met epsiodes werken.
-- Objecten die van het platform vallen worden niet "gedestroyed".
-- Objecten gaan de verkeerde richting uit als ze "gespawned" worden.
-- Extra bewegings mogelijkheden zoals rond de eigen as draaien mogen niet samen in het bewegingsscript komen maar moeten apart in een empy game object komen, anders krijgen we rare bewegingen.
-- Jumper die niet wou stoppen met te jumpen ook al drukten we niet op de spatie balk in de heuristic mode.
-- Heel raar gedrag van de bewegnde objecten.
-- Objecten die niet willen spawnen of maar 1 keer spawnen.
+We hadden ook heel veel kleine problemen waar we niet al te diep op ingaan. Deze problemen waren onder andere:
+
+- Geen apart spawner script maken voor de objecten aangezien we met episodes werken.
+- Objecten die van het platform vallen worden niet vernietigd.
+- Objecten gaan de verkeerde richting uit als ze worden gespawned.
+- Extra bewegingsmogelijkheden, zoals rond de eigen as draaien, mogen niet samen in het bewegingsscript komen, maar moeten apart in een leeg game object worden geplaatst, anders krijgen we rare bewegingen.
+- Jumper die niet wilde stoppen met springen, ook al drukten we niet op de spatiebalk in de heuristic mode.
+- Heel raar gedrag van de bewegende objecten.
+- Objecten die niet willen spawnen of maar één keer spawnen.
 - ...
 
 Inleiding
@@ -22,41 +25,39 @@ De CubeAgentJump is een Unity ML-Agent die is getraind om obstakels te ontwijken
 
 Vereisten
 
-•	Unity 2019.4.28f1 of hoger
-•	Unity ML-Agents 2.1.0 of hoger
-•	Een machine met een GPU
-
+• Unity 2019.4.28f1 of hoger
+• Unity ML-Agents 2.1.0 of hoger
+• Een machine met een GPU
 
 Installatie
-•	Download en installeer Unity 2019.4.28f1 of hoger.
-•	Open de Unity Editor en maak een nieuw project aan.
-•	Importeer de Unity ML-Agents 2.1.0 of hoger package in uw project.
-•	Importeer de aangepaste CubeAgentJump-script in uw project.
-•	Installeer Anaconda
-
+• Download en installeer Unity 2019.4.28f1 of hoger.
+• Open de Unity Editor en maak een nieuw project aan.
+• Importeer de Unity ML-Agents 2.1.0 of hoger package in uw project.
+• Importeer het aangepaste CubeAgentJump-script in uw project.
+• Installeer Anaconda.
 
 Gebruik
-1.	Voeg het CubeAgentJump-script toe aan een game object in uw scene.
-2.	Voeg de volgende componenten toe aan het CubeAgentJump-game object:
-a.	Rigidbody-component: Voeg een Rigidbody-component toe aan het CubeAgentJump-game object om fysica-simulatie te krijgen.
-b.	Collider-component: Voeg een Collider-component toe aan het CubeAgentJump-game object om te controleren of de agent op de grond staat.
-c.	Ground Check-game object: Voeg een nieuw game object toe aan het CubeAgentJump-game object om te controleren of de agent op de grond staat.
-3.	Uitleg  volgende parameters toe aan het CubeAgentJump-script:
-a.	JumpForce: De kracht die de agent nodig heeft om te springen.
-b.	GroundCheck: Een Transform die het CubeAgentJump-game object boven de grond plaatst om te controleren of de agent op de grond staat.
-c.	GroundMask: De laag van de grond waar de agent op kan staan.
-d.  GroundMask: de laag die de grond aangeeft. Alleen objecten met deze laag worden gezien als grond.
-e.  ObstaclePrefabs: een array van obstacle prefabs die worden gebruikt om willekeurig objecten te spawnen die de agent moet vermijden.
-f.  obstacleSpawnDistance: de afstand vanaf de agent waarop obstakels worden gespawnd.
-g.  MinObstacleSpawnTime: de minimale tijd tussen het spawnen van obstakels.
-h.  MaxObstacleSpawnTime: de maximale tijd tussen het spawnen van obstakels.
-I.  Obstacles: een lijst met alle obstakels die momenteel in de scène aanwezig zijn.
-J.  Rb: de Rigidbody component van de agent.
-K.  IsGrounded: een boolean die aangeeft of de agent op de grond staat.
-L.  ObstacleSpawnTimer: een timer die bijhoudt hoe lang het geleden is dat er een obstakel gespawned is.
-4.  Voeg of maak de prefabs naar keuze en sleep deze in de ObstaclePrefabs.
-5.  Ook mag je niet vergeten om de Agent ogen te geven door een Ray Perception Sensor 3D mee te geven
-6. Zet ook de branch 0 size op 2 om er voor te zorgen dat de jumper weldegelijk kan jumpen ;)
+
+1. Voeg het CubeAgentJump-script toe aan een game object in uw scene.
+2. Voeg de volgende componenten toe aan het CubeAgentJump-game object:
+a. Rigidbody-component: Voeg een Rigidbody-component toe aan het CubeAgentJump-game object om fysica-simulatie te krijgen.
+b. Collider-component: Voeg een Collider-component toe aan het CubeAgentJump-game object om te controleren of de agent op de grond staat.
+c. Ground Check-game object: Voeg een nieuw game object toe aan het CubeAgentJump-game object om te controleren of de agent op de grond staat.
+3. Voeg de volgende parameters toe aan het CubeAgentJump-script:
+a. JumpForce: De kracht die de agent nodig heeft om te springen.
+b. GroundCheck: Een Transform die het CubeAgentJump-game object boven de grond plaatst om te controleren of de agent op de grond staat.
+c. GroundMask: De laag van de grond waar de agent op kan staan. Alleen objecten met deze laag worden gezien als grond.
+d. ObstaclePrefabs: een array van obstacle prefabs die worden gebruikt om willekeurig objecten te spawnen die de agent moet vermijden.
+e. ObstacleSpawnDistance: de afstand vanaf de agent waarop obstakels worden gespawned.
+f. MinObstacleSpawnTime: de minimale tijd tussen het spawnen van obstakels.
+g. MaxObstacleSpawnTime: de maximale tijd tussen het spawnen van obstakels.
+h. Obstacles: een lijst met alle obstakels die momenteel in de scène aanwezig zijn.
+i. Rb: de Rigidbody-component van de agent.
+j. IsGrounded: een boolean die aangeeft of de agent op de grond staat.
+k. ObstacleSpawnTimer: een timer die bijhoudt hoe lang het geleden is dat er een obstakel gespawned is.
+4. Voeg of maak de gewenste prefabs en sleep deze naar de ObstaclePrefabs-array.
+5. Gebruik een Ray Perception Sensor 3D om de agent ogen te geven.
+6. Zet de branch 0 size op 2 om ervoor te zorgen dat de jumper daadwerkelijk kan springen.
 
 CubeAgentJump script:
 
