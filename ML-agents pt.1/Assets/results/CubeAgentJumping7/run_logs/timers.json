@@ -1,0 +1,42 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1682095511",
+        "python_version": "3.9.16 (main, Mar  8 2023, 10:39:24) [MSC v.1916 64 bit (AMD64)]",
+        "command_line_arguments": "D:\\jordy\\Games\\Unity_Games\\Anaconda_map\\envs\\MLAgents_venv\\Scripts\\mlagents-learn config/CubeAgent.yaml --run-id=CubeAgentJumping7 --force",
+        "mlagents_version": "0.30.0",
+        "mlagents_envs_version": "0.30.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "1.7.1+cu110",
+        "numpy_version": "1.21.2",
+        "end_time_seconds": "1682095524"
+    },
+    "total": 12.972628799999999,
+    "count": 1,
+    "self": 0.00543479999999974,
+    "children": {
+        "run_training.setup": {
+            "total": 0.09699710000000006,
+            "count": 1,
+            "self": 0.09699710000000006
+        },
+        "TrainerController.start_learning": {
+            "total": 12.8701969,
+            "count": 1,
+            "self": 0.00010259999999995273,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 12.8700565,
+                    "count": 1,
+                    "self": 12.8700565
+                },
+                "TrainerController._save_models": {
+                    "total": 3.779999999942163e-05,
+                    "count": 1,
+                    "self": 3.779999999942163e-05
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,65 @@
+{
+    "CubeAgent": {
+        "checkpoints": [
+            {
+                "steps": 59692,
+                "file_path": "results\\ppo\\CubeAgent\\CubeAgent-59692.onnx",
+                "reward": null,
+                "creation_time": 1678880438.4782262,
+                "auxillary_file_paths": [
+                    "results\\ppo\\CubeAgent\\CubeAgent-59692.pt"
+                ]
+            },
+            {
+                "steps": 59794,
+                "file_path": "results\\ppo\\CubeAgent\\CubeAgent-59794.onnx",
+                "reward": null,
+                "creation_time": 1678880481.485545,
+                "auxillary_file_paths": [
+                    "results\\ppo\\CubeAgent\\CubeAgent-59794.pt"
+                ]
+            },
+            {
+                "steps": 59898,
+                "file_path": "results\\ppo\\CubeAgent\\CubeAgent-59898.onnx",
+                "reward": null,
+                "creation_time": 1678880921.686775,
+                "auxillary_file_paths": [
+                    "results\\ppo\\CubeAgent\\CubeAgent-59898.pt"
+                ]
+            },
+            {
+                "steps": 60002,
+                "file_path": "results\\ppo\\CubeAgent\\CubeAgent-60002.onnx",
+                "reward": null,
+                "creation_time": 1678882158.960704,
+                "auxillary_file_paths": [
+                    "results\\ppo\\CubeAgent\\CubeAgent-60002.pt"
+                ]
+            },
+            {
+                "steps": 60105,
+                "file_path": "results\\ppo\\CubeAgent\\CubeAgent-60105.onnx",
+                "reward": null,
+                "creation_time": 1678882232.66206,
+                "auxillary_file_paths": [
+                    "results\\ppo\\CubeAgent\\CubeAgent-60105.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 60105,
+            "file_path": "results\\ppo\\CubeAgent.onnx",
+            "reward": null,
+            "creation_time": 1678882232.66206,
+            "auxillary_file_paths": [
+                "results\\ppo\\CubeAgent\\CubeAgent-60105.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}
