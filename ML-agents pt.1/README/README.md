@@ -1,5 +1,5 @@
-Jordy Van Mol
-Chadley De Weggheleire
+- Jordy Van Mol
+- Chadley De Weggheleire
 
 Voorwoord
 
