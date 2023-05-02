@@ -28,16 +28,16 @@ De CubeAgentJump is een Unity ML-Agent die is getraind om obstakels te ontwijken
 
 Vereisten
 
-• Unity 2019.4.28f1 of hoger
-• Unity ML-Agents 2.1.0 of hoger
-• Een machine met een GPU
+- Unity 2019.4.28f1 of hoger
+- Unity ML-Agents 2.1.0 of hoger
+- Een machine met een GPU
 
 Installatie
-• Download en installeer Unity 2019.4.28f1 of hoger.
-• Open de Unity Editor en maak een nieuw project aan.
-• Importeer de Unity ML-Agents 2.1.0 of hoger package in uw project.
-• Importeer het aangepaste CubeAgentJump-script in uw project.
-• Installeer Anaconda.
+- Download en installeer Unity 2019.4.28f1 of hoger.
+- Open de Unity Editor en maak een nieuw project aan.
+- Importeer de Unity ML-Agents 2.1.0 of hoger package in uw project.
+- Importeer het aangepaste CubeAgentJump-script in uw project.
+- Installeer Anaconda.
 
 Gebruik
 
