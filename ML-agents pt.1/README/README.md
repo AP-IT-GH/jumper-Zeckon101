@@ -1,3 +1,6 @@
+Jordy Van Mol
+Chadley De Weggheleire
+
 Voorwoord
 
 Beste lezer,
